@@ -1,0 +1,26 @@
+1. Membuat Key SSH
+Jalankan perintah ssh-keygen pada termnial. Kemudian inputkan id (identitas) SSH anda. Untuk passpharse dikosongkan saja.
+Perintah SSH Keygen
+Maka di dalam direktori ~/.ssh/ akan tercipa file key baru.
+
+2. Jalankan SSH Angen dan Load SSH Key
+Untuk memastikan apakah SSH Agent sudah berajalan atau tidak, gunakan perintah ini:
+ps -e | grep [s]sh-agent
+Kalau hasilnya seperti di bawah ini, berati SSH Agent sudah berjalan.
+Tapi, kalau belum berjalan, gunakan perintah berikut ini untuk menjalankan SSH agent:
+ssh-agent /bin/bash
+Berikutnya kita Load SSH Key. Gunakan perintah:
+ssh-add ~/.ssh/id_anda
+Kemudian untuk mengecek, gunakan perintah:
+ssh-add -l
+
+3. Tambahkan SSH Key ke Github
+Sebelumnya ambil dulu kuncil publik yang sudah anda buat, gunakan perintah cat.
+cat ~/.ssh/id_anda.pub
+Copy semua teks yang ditampilkan.
+Lalu masuk ke Settings>SSH and GPG Keys, buat kunci baru dengan mengelik New SSH Key. Lalu masukkan key yang sudah dibuat.
+
+4. Uji Konektivitas
+Ketik perintah berikut untuk menguji konektivitas SSH ke Github
+ssh -T git@github.com
+Jika hasilnya seperti berikut ini, berarti berhasil. Selanjutnya kita tinggal melakukan push dengan SSH.
